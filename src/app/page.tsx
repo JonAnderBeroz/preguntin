@@ -1,16 +1,12 @@
-import {createServerComponentClient} from "@supabase/auth-helpers-nextjs";
-import {cookies} from "next/headers";
+import QuestionForm from "@/components/QuestionForm";
+import api from "../api";
+import QuestionList from "@/components/QuestionList";
 
-import QuestionForm from "@/app/questionForm/questionForm";
-
-export default async function QuestionList() {
-  const supabase = createServerComponentClient({cookies});
-  const {data: questions}: PostgrestSingleResponse<{id: number; question: string}[]> =
-    await supabase.from("questions").select();
-
+export default async function QuestionsIndex() {
+  const questions = await api.question.getAll();
   return (
-    <main className="flex flex-col max-w-7xl mx-auto w-full h-full gap-4">
-      <QuestionForm />
+    <main className="flex flex-col gap-4">
+      <QuestionForm createQuestion={api.question.create} />
       <QuestionList questions={questions} />
     </main>
   );

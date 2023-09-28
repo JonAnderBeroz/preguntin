@@ -1,9 +1,12 @@
 "use client";
 
 import {useRef} from "react";
-import createQuestion from "./actions/createQuestion";
 
-export default function QuestionForm() {
+export default function QuestionForm({
+  createQuestion,
+}: {
+  createQuestion: (question: string) => Promise<void>;
+}) {
   const form = useRef<HTMLFormElement>(null);
 
   async function handleAddQuestion(data: FormData) {
