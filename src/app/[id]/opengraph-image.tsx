@@ -1,3 +1,4 @@
+import api from "@/api";
 import {ImageResponse} from "next/server";
 
 // Route segment config
@@ -13,11 +14,13 @@ export const size = {
 export const contentType = "image/png";
 
 // Image generation
-export default async function Image() {
+export default async function Image({params}: {params: {id: string}}) {
   // Font
   // const interSemiBold = fetch(new URL("./Inter-SemiBold.ttf", import.meta.url)).then((res) =>
   //   res.arrayBuffer(),
   // );
+
+  const {question} = await api.question.get(params.id);
 
   return new ImageResponse(
     (
@@ -33,7 +36,7 @@ export default async function Image() {
           justifyContent: "center",
         }}
       >
-        About Acme
+        question
       </div>
     ),
     // ImageResponse options
