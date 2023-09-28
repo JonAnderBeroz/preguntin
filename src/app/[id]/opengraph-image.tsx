@@ -36,7 +36,7 @@ export default async function Image({params}: {params: {id: string}}) {
           justifyContent: "center",
         }}
       >
-        question
+        {question}
       </div>
     ),
     // ImageResponse options
