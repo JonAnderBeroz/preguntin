@@ -4,6 +4,7 @@ import Link from "next/link";
 
 export default async function Question({params}: {params: {id: string}}) {
   const {question} = await api.question.get(params.id);
+  console.log(question);
   return (
     <section className="grid gap-4">
       <QuestionItem question={question} />
