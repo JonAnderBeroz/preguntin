@@ -4,8 +4,7 @@ import Link from "next/link";
 import Copy2Clipboard from "./copy2Clipboard";
 
 export default async function Question({params}: {params: {id: string}}) {
-  const {question} = await api.question.get(params.id);
-  console.log(question);
+  const {id, question} = await api.question.get(params.id);
   return (
     <section className="grid gap-4">
       <QuestionItem question={question} />

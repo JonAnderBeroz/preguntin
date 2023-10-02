@@ -20,8 +20,9 @@ const api = {
       revalidatePath("/");
     },
     get: async (id: string): Promise<Question> => {
-      const {data: results} = await supabase.from("questions").select().eq("id", id).single();
-      return results as Question;
+      const {data: result} = await supabase.from("questions").select().eq("id", id).single();
+      if (!result) return {id: "-1", question: "Pregunta no encontrada!"};
+      return result as Question;
     },
   },
 };
