@@ -45,8 +45,8 @@ export default function QuestionForm({
     const question = data.get("question") as string;
     if (!question) return;
     await createQuestion(question);
-    form.current?.reset();
     setCreating(false);
+    form.current?.reset();
   }
 
   return (
